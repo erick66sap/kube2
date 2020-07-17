@@ -1,20 +1,15 @@
 pipeline {
-
   environment {
     registry = "192.168.1.59:5000/justme/myweb"
     dockerImage = ""
   }
-
   agent any
-
   stages {
-
     stage('Checkout Source') {
       steps {
         git 'https://github.com/erick66sap/kube.git'
       }
     }
-
     stage('Build image') {
       steps{
         script {
@@ -22,7 +17,6 @@ pipeline {
         }
       }
     }
-
     stage('Push Image') {
       steps{
         script {
@@ -32,7 +26,6 @@ pipeline {
         }
       }
     }
-
     stage('Deploy App') {
       steps {
         script {
@@ -40,7 +33,5 @@ pipeline {
         }
       }
     }
-
   }
-
 }
