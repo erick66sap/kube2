@@ -8,14 +8,14 @@ pipeline {
     stage('Checkout Source') {
       steps {
         echo 'getting git repo ...'
-        hostname
+        sh 'hostname'
         git 'https://github.com/erick66sap/kube2.git'
       }
     }
     stage('Build image') {
       steps{
         echo 'Building image...'
-        hostname
+        sh 'hostname'
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
@@ -23,7 +23,7 @@ pipeline {
     }
     stage('Push Image') {
       steps{
-        hostname
+        sh 'hostname'
         script {
           docker.withRegistry( "" ) {
             dockerImage.push()
@@ -32,8 +32,8 @@ pipeline {
       }
     }
     stage('Deploy App') {
+      sh 'hostname'
       steps {
-        hostname
         script {
           kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
         }
