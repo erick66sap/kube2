@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/erick66sap/kube.git'
+        git 'https://github.com/erick66sap/kube2.git'
       }
     }
     stage('Build image') {
